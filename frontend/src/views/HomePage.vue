@@ -75,6 +75,19 @@
         </div>
       </div>
     </section>
+
+    <!-- Login/Register Alert Modal -->
+    <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4 alert-modal">
+        <h3 class="text-xl font-bold mb-4 text-center">Welcome!</h3>
+        <p class="text-gray-600 mb-6 text-center">Please login or register to access all features.</p>
+        <div class="flex justify-center space-x-4">
+          <button @click="goToLogin" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">Login</button>
+          <button @click="goToRegister" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">Register</button>
+        </div>
+        <button @click="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">&times;</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -83,6 +96,7 @@ export default {
   name: "HomePage",
   data() {
     return {
+      showModal: true,
       searchQuery: '',
       searchResults: [],
       hasSearched: false,
@@ -100,6 +114,9 @@ export default {
         { title: "Flexible Learning", description: "Learn at your own pace", icon: "https://img.icons8.com/color/48/000000/flexible.png" }
       ]
     };
+  },
+  mounted() {
+    // Modal shows on page load
   },
   methods: {
     async searchCourses() {
@@ -141,6 +158,15 @@ export default {
         console.error('Error enrolling in course:', error);
         alert('Error enrolling in course');
       }
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    goToLogin() {
+      this.$router.push('/login');
+    },
+    goToRegister() {
+      this.$router.push('/register');
     }
   }
 };
@@ -148,4 +174,23 @@ export default {
 
 <style scoped>
 .container { max-width: 1200px; }
+</style>
+
+<style scoped>
+.alert-modal {
+  animation: pulseAlert 1.5s infinite;
+  position: relative;
+}
+
+@keyframes pulseAlert {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
 </style>
