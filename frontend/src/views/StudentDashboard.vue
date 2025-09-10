@@ -336,7 +336,7 @@ export default {
       };
 
       try {
-        const response = await fetch("http://localhost:8080/api/enroll", {
+        const response = await fetch(`http://localhost:8080/api/enroll`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

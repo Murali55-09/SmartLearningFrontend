@@ -173,7 +173,7 @@ export default {
   methods: {
     async fetchStudents() {
       try {
-        const response = await fetch('http://localhost:8080/api/users');
+        const response = await fetch(`http://localhost:8080/api/users`);
         if (response.ok) {
           this.students = await response.json();
         }
@@ -184,7 +184,7 @@ export default {
 
     async fetchCourses() {
       try {
-        const response = await fetch('http://localhost:8080/api/courses');
+        const response = await fetch(`http://localhost:8080/api/courses`);
         if (response.ok) {
           this.courses = await response.json();
         }
@@ -200,7 +200,7 @@ export default {
       }
 
       try {
-        const response = await fetch('http://localhost:8080/api/auth/register', {
+        const response = await fetch(`http://localhost:8080/api/auth/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -233,7 +233,7 @@ export default {
       }
 
       try {
-        const response = await fetch('http://localhost:8080/api/courses', {
+        const response = await fetch(`http://localhost:8080/api/courses`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
